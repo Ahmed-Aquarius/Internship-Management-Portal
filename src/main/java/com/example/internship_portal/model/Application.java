@@ -1,5 +1,6 @@
 package com.example.internship_portal.model;
 
+import com.example.internship_portal.model.users.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
