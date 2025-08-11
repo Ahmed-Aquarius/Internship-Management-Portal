@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "mentor")
+@Table(name = "mentors")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Mentor extends User {

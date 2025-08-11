@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "intern")
+@Table(name = "interns")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Intern extends User {
