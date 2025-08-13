@@ -3,6 +3,8 @@ package com.example.internship_portal.service;
 import com.example.internship_portal.model.users.*;
 import com.example.internship_portal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +18,14 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -49,6 +53,12 @@ public class UserService {
 
     @Transactional
     public User addUser(User newUser) {
+        String password = newUser.getPassword();
+        if (password.length() < 6 || password.length() > 15) {
+
+        }
+        newUser.setPassword(passwordEncoder.encode(password));
+
         return userRepository.save(newUser);
     }
 

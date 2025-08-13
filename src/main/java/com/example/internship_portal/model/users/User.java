@@ -32,7 +32,6 @@ public class User {
     
     @Column(name = "password", nullable = false, length = 68)
     @NotBlank(message = "Password is required")
-    @Size(min = 6, max = 15, message = "password should be between 6 and 15 characters")
     protected String password;
     
     @Column(name = "email", unique = true, nullable = false, length = 100)
@@ -94,7 +93,7 @@ public class User {
         return username;
     }
 
-    public @NotBlank(message = "Password is required") @Size(min = 6, max = 15, message = "password should be between 6 and 15 characters") String getPassword() {
+    public @NotBlank(message = "Password is required") String getPassword() {
         return password;
     }
 
@@ -133,7 +132,7 @@ public class User {
         this.username = username;
     }
 
-    public void setPassword(@NotBlank(message = "Password is required") @Size(min = 6, max = 15, message = "password should be between 6 and 15 characters") String password) {
+    public void setPassword(@NotBlank(message = "Password is required") String password) {
         this.password = password;
     }
 
