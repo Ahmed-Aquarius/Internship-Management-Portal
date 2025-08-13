@@ -41,9 +41,9 @@ public class UserController {
         return userService.findAllInterns();
     }
 
-    @GetMapping("{user_id}")
-    public User getUserById(@PathVariable Long user_id) {
-        return userService.findUserById(user_id);
+    @GetMapping("{id}")
+    public User getUserById(@PathVariable Long id) {
+        return userService.findUserById(id);
     }
 
     @PostMapping()
@@ -61,9 +61,9 @@ public class UserController {
         return userService.updateUser(id, patchPayLoad);
     }
 
-    @DeleteMapping("{user_id}")
-    public void deleteUser(@PathVariable Long user_id) {
-        userService.deleteUser(user_id);
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 
 }

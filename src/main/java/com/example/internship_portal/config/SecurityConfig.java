@@ -6,7 +6,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -43,14 +42,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests(configurer ->
-//                configurer
-//                        .requestMatchers(HttpMethod.DELETE, "/api/employees").hasRole("EMPLOYEE")
-//                        .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
-//                        .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
-//                        .requestMatchers(HttpMethod.PUT, "/api/employees").hasRole("MANAGER")
-//                        .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
-//        );
+        http.authorizeHttpRequests(configurer ->
+                configurer
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/users",
+                                "/api/users/admins",
+                                "/api/users/mentors",
+                                "/api/users/interns")
+                                .authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/users/*").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/users").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/api/users/*").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/users/*").hasAnyAuthority("MENTOR", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/*").hasAuthority("ADMIN")
+        );
 
         http.httpBasic(Customizer.withDefaults());
 
@@ -58,4 +65,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

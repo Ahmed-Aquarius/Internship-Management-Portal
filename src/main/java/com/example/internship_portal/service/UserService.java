@@ -3,7 +3,6 @@ package com.example.internship_portal.service;
 import com.example.internship_portal.model.users.*;
 import com.example.internship_portal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,9 +90,9 @@ public class UserService {
                         targetUserRole = new Admin();
                     }
 
-                    if (admin.getCompanyName() != null)
+                    if (admin.getCompany() != null)
                     {
-                        ((Admin) targetUserRole).setCompanyName(admin.getCompanyName());
+                        ((Admin) targetUserRole).setCompany(admin.getCompany());
                     }
 
                     if (isNewRole)
@@ -116,9 +115,9 @@ public class UserService {
                         targetUserRole = new Mentor();
                     }
 
-                    if (mentor.getCompanyName() != null)
+                    if (mentor.getCompany() != null)
                     {
-                        ((Mentor) targetUserRole).setCompanyName(mentor.getCompanyName());
+                        ((Mentor) targetUserRole).setCompany(mentor.getCompany());
                     }
                     if (mentor.getPosition() != null)
                     {
@@ -193,12 +192,12 @@ public class UserService {
 
                 if (existingRole instanceof Mentor && newRole instanceof Mentor) {
                     ((Mentor) existingRole).setPosition(((Mentor) newRole).getPosition());
-                    ((Mentor) existingRole).setCompanyName(((Mentor) newRole).getCompanyName());
+                    ((Mentor) existingRole).setCompany(((Mentor) newRole).getCompany());
                 } else if (existingRole instanceof Intern && newRole instanceof Intern) {
                     ((Intern) existingRole).setSchool(((Intern) newRole).getSchool());
                     ((Intern) existingRole).setSkills(((Intern) newRole).getSkills());
                 } else if (existingRole instanceof Admin && newRole instanceof Admin) {
-                    ((Admin) existingRole).setCompanyName(((Admin) newRole).getCompanyName());
+                    ((Admin) existingRole).setCompany(((Admin) newRole).getCompany());
                 }
 
                 updatedRoles.add(existingRole);

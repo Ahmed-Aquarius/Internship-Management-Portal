@@ -11,16 +11,16 @@ import lombok.Data;
 public class Mentor extends Role {
 
     @Column(name = "company", length = 60)
-    private String companyName;
+    private String company;
 
     @Column(name = "position", length = 80)
     private String position;
 
 
 
-    public Mentor(User user, Role.RoleName role, String companyName, String position) {
+    public Mentor(User user, Role.RoleName role, String company, String position) {
         super(user, role);
-        this.companyName = companyName;
+        this.company = company;
         this.position = position;
     }
 
@@ -30,8 +30,8 @@ public class Mentor extends Role {
 
 
 
-    public String getCompanyName() {
-        return companyName;
+    public String getCompany() {
+        return company;
     }
 
     public String getPosition() {
@@ -39,8 +39,8 @@ public class Mentor extends Role {
     }
 
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCompany(String companyName) {
+        this.company = companyName;
     }
 
     public void setPosition(String position) {

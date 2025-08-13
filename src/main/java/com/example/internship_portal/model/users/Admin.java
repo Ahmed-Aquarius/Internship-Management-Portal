@@ -11,12 +11,12 @@ import lombok.Data;
 public class Admin extends Role {
 
     @Column(name = "company", length = 60)
-    private String companyName;
+    private String company;
 
 
-    public Admin(User user, Role.RoleName role, String companyName) {
+    public Admin(User user, Role.RoleName role, String company) {
         super(user, role);
-        this.companyName = companyName;
+        this.company = company;
     }
 
     public Admin() {
@@ -25,12 +25,12 @@ public class Admin extends Role {
 
 
 
-    public String getCompanyName() {
-        return companyName;
+    public String getCompany() {
+        return company;
     }
 
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCompany(String companyName) {
+        this.company = companyName;
     }
 }
