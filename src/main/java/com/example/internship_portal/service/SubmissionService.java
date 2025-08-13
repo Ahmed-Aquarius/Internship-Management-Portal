@@ -2,7 +2,11 @@ package com.example.internship_portal.service;
 
 import com.example.internship_portal.dto.SubmisionDto;
 import com.example.internship_portal.model.Submission;
+import com.example.internship_portal.model.Task;
+import com.example.internship_portal.model.User;
 import com.example.internship_portal.repo.SubmisionRepository;
+import com.example.internship_portal.repo.TaskRepository;
+import com.example.internship_portal.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
@@ -16,6 +20,26 @@ import java.time.LocalDateTime;
 
 public class SubmissionService {
     private final SubmisionRepository submissionRepo;
+    private final TaskRepository taskRepo;
+    private final UserRepository userRepo;
+
+
+
+    public SubmisionDto.Response create(SubmisionDto.CreateRequest req){
+        Task task = taskRepo.findById(req.taskId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task not found"));
+        User intern = userRepo.findById(req.internId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Intern not found"));
+
+        Submission s = new Submission();
+        s.setTask(task);
+        s.setIntern(intern);
+        s.setContent(req.content());
+        s.setStatus(Submission.SubmissionStatus.SUBMITTED);
+        s.setIsActive(true);
+        // submittedAt handled by @PrePersist
+        return toDto(submissionRepo.save(s));
+    }
 
     public Page<SubmisionDto.Response> listByTask(Long taskId, Pageable pageable){
         return submissionRepo.findByTaskId(taskId, pageable).map(this::toDto);

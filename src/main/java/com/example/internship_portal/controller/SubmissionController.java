@@ -5,6 +5,8 @@ import com.example.internship_portal.service.SubmissionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 public class SubmissionController {
     private final SubmissionService service;
+
+    @PostMapping
+    public ResponseEntity<SubmisionDto.Response> create(@Valid @RequestBody SubmisionDto.CreateRequest req){
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(req));
+    }
 
     @GetMapping
     public Page<SubmisionDto.Response> listByTask(
