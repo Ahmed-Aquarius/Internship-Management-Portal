@@ -55,7 +55,7 @@ public class UserService {
     public User addUser(User newUser) {
         String password = newUser.getPassword();
         if (password.length() < 6 || password.length() > 15) {
-
+            //TODO
         }
         newUser.setPassword(passwordEncoder.encode(password));
 
