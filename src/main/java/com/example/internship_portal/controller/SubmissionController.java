@@ -1,7 +1,7 @@
 package com.example.internship_portal.controller;
 
 import com.example.internship_portal.dto.SubmisionDto;
-import com.example.internship_portal.service.SubmissionService;
+import com.example.internship_portal.service.SubmissionServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 
 public class SubmissionController {
-    private final SubmissionService service;
+    private final SubmissionServiceImpl service;
 
     @PostMapping
     public ResponseEntity<SubmisionDto.Response> create(@Valid @RequestBody SubmisionDto.CreateRequest req){

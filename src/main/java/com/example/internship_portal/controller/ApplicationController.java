@@ -1,7 +1,7 @@
 package com.example.internship_portal.controller;
 
 import com.example.internship_portal.dto.applicationDto;
-import com.example.internship_portal.service.ApplicationService;
+import com.example.internship_portal.service.ApplicationServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/applications")
 @RequiredArgsConstructor
 public class ApplicationController {
-    private final ApplicationService service;
+    private final ApplicationServiceImpl service;
 
     // Intern applies
     @PostMapping

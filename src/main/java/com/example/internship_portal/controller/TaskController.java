@@ -2,7 +2,7 @@ package com.example.internship_portal.controller;
 
 
 import com.example.internship_portal.dto.TaskDto;
-import com.example.internship_portal.service.TaskService;
+import com.example.internship_portal.service.TaskServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 
 public class TaskController {
-    private final TaskService service;
+    private final TaskServiceImpl service;
 
     @PostMapping
     public ResponseEntity<TaskDto.Response> create(@Valid @RequestBody TaskDto.CreateRequest req){

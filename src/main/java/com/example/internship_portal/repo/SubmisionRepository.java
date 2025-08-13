@@ -6,5 +6,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SubmisionRepository extends JpaRepository<Submission,Long> {
     Page<Submission> findByTaskId(Long taskId, Pageable pageable);
-
 }
