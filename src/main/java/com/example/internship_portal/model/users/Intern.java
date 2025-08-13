@@ -1,26 +1,55 @@
 package com.example.internship_portal.model.users;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "interns")
-@NoArgsConstructor
-@AllArgsConstructor
-public class Intern extends User {
+@Data
+@PrimaryKeyJoinColumn(name = "user-role_id")
+public class Intern extends Role {
 
     @Column(name = "school", length= 50)
-    private String School;
+    private String school;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
             name = "intern_skills",
-            joinColumns = @JoinColumn(name = "intern_id")
+            joinColumns = @JoinColumn(name = "user-role_id")
     )
     @Column(name = "skill")
-    private List<String> skills;
+    private Set<String> skills = new HashSet<>();
 
+
+    public Intern(User user, Role.RoleName role, String school, Set<String> skills) {
+        super(user, role);
+        this.school = school;
+        this.skills = skills;
+    }
+
+
+    public Intern () {
+        super(Role.RoleName.INTERN);
+    }
+
+
+    public String getSchool() {
+        return school;
+    }
+
+    public Set<String> getSkills() {
+        return skills;
+    }
+
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public void setSkills(Set<String> skills) {
+        this.skills = skills;
+    }
 }
