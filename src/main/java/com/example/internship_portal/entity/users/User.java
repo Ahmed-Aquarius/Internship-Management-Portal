@@ -1,4 +1,4 @@
-package com.example.internship_portal.model.users;
+package com.example.internship_portal.entity.users;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;

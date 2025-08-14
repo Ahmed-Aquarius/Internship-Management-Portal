@@ -1,31 +1,41 @@
 package com.example.internship_portal.service;
 
 import com.example.internship_portal.dto.LoginDTO;
-import com.example.internship_portal.model.users.User;
+import com.example.internship_portal.entity.users.User;
 import com.example.internship_portal.repository.UserRepository;
+import com.example.internship_portal.util.JwtUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthenticationService {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
-    public AuthenticationService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
+    public AuthenticationService(UserService userService, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
+        this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
 
 
 
-    public boolean authenticate(LoginDTO credentials) {
-        User candidateUser = userRepository.findByUsername(credentials.username()).orElse(null);    //TODO
+    public String authenticate(LoginDTO credentials) {
 
-        if (passwordEncoder.matches(credentials.password(), candidateUser.getPassword())) {
-            return true;
-        } else {
-            return false;
+        User candidateUser = userService.findUserByUsername(credentials.username());
+
+        if (candidateUser == null) {
+            throw new IllegalArgumentException("No user with such username");
         }
+
+        if (!passwordEncoder.matches(credentials.password(), candidateUser.getPassword())) {
+            throw new IllegalArgumentException("Invalid password");
+        }
+
+        return jwtUtil.generateToken(candidateUser.getId(), candidateUser.getUsername(), candidateUser.getRoles());
     }
 }

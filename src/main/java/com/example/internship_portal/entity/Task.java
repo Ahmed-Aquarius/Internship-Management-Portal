@@ -1,4 +1,4 @@
-package com.example.internship_portal.model;
+package com.example.internship_portal.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

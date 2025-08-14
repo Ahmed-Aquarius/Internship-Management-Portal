@@ -1,6 +1,6 @@
 package com.example.internship_portal.service;
 
-import com.example.internship_portal.model.users.*;
+import com.example.internship_portal.entity.users.*;
 import com.example.internship_portal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -50,13 +50,14 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User findUserByUsername(String username) {return userRepository.findByUsername(username).orElse(null);}
+
     @Transactional
     public User addUser(User newUser) {
-        String password = newUser.getPassword();
-        if (password.length() < 6 || password.length() > 15) {
-            //TODO
-        }
-        newUser.setPassword(passwordEncoder.encode(password));
+
+        //add password validation and other validations
+
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
 
         return userRepository.save(newUser);
     }

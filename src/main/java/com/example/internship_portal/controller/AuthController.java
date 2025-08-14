@@ -1,19 +1,20 @@
 package com.example.internship_portal.controller;
 
 import com.example.internship_portal.dto.LoginDTO;
-import com.example.internship_portal.model.users.User;
+import com.example.internship_portal.entity.users.User;
 import com.example.internship_portal.service.AuthenticationService;
 import com.example.internship_portal.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthenticationController {
+public class AuthController {
 
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
-    public AuthenticationController(UserService userService, AuthenticationService authenticationService) {
+    public AuthController(UserService userService, AuthenticationService authenticationService) {
         this.userService = userService;
         this.authenticationService = authenticationService;
     }
@@ -21,19 +22,16 @@ public class AuthenticationController {
 
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody User user) {
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
+
         userService.addUser(user);
-        return "User registered successfully";
+        return ResponseEntity.ok("User registered successfully!");
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginDTO credentials) {
+    public ResponseEntity<String> loginUser(@RequestBody LoginDTO credentials) {
 
-        boolean isAuthenticated = authenticationService.authenticate(credentials);
-        if (isAuthenticated) {
-            return "User logged in successfully";
-        } else {
-            return "Invalid username or password";
-        }
+        String jwtToken = authenticationService.authenticate(credentials);
+        return ResponseEntity.ok(jwtToken);
     }
 }

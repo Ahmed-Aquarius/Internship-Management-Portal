@@ -1,4 +1,4 @@
-package com.example.internship_portal.model.users;
+package com.example.internship_portal.entity.users;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,6 +17,10 @@ public class Admin extends Role {
     public Admin(User user, Role.RoleName role, String company) {
         super(user, role);
         this.company = company;
+    }
+
+    public Admin(User user, Role.RoleName role) {
+        this(user, role, null);
     }
 
     public Admin() {

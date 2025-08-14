@@ -1,6 +1,6 @@
 package com.example.internship_portal.controller;
 
-import com.example.internship_portal.model.users.User;
+import com.example.internship_portal.entity.users.User;
 import com.example.internship_portal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

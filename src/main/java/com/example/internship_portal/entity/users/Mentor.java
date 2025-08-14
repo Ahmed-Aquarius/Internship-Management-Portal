@@ -1,4 +1,4 @@
-package com.example.internship_portal.model.users;
+package com.example.internship_portal.entity.users;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -22,6 +22,10 @@ public class Mentor extends Role {
         super(user, role);
         this.company = company;
         this.position = position;
+    }
+
+    public Mentor(User user, Role.RoleName role) {
+        this (user, role, null, null);
     }
 
     public Mentor() {
