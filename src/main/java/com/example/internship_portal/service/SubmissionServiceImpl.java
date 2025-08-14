@@ -6,7 +6,7 @@ import com.example.internship_portal.exception.ResourceNotFoundException;
 import com.example.internship_portal.model.Application;
 import com.example.internship_portal.model.Submission;
 import com.example.internship_portal.model.Task;
-import com.example.internship_portal.model.User;
+import com.example.internship_portal.model.users.User;
 import com.example.internship_portal.repo.ApplicationRepository;
 import com.example.internship_portal.repo.SubmisionRepository;
 import com.example.internship_portal.repo.TaskRepository;

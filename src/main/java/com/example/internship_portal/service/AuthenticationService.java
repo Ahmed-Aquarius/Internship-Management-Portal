@@ -2,7 +2,7 @@ package com.example.internship_portal.service;
 
 import com.example.internship_portal.dto.LoginDTO;
 import com.example.internship_portal.model.users.User;
-import com.example.internship_portal.repository.UserRepository;
+import com.example.internship_portal.repo.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

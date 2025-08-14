@@ -45,6 +45,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers("/api/auth/**").permitAll()
+                    
+                        .requestMatchers("/api/v1/internships/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET,
                                 "/api/users",

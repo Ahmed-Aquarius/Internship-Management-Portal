@@ -26,6 +26,10 @@ public class InternshipDto {
             Boolean isActive
     ) { }
 
+    public static record StatusUpdateRequest(
+            @NotBlank String status
+    ) { }
+
     public static record Response(
             Long id,
             String title,

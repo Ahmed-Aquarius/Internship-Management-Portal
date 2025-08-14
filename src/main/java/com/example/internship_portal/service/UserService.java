@@ -1,7 +1,7 @@
 package com.example.internship_portal.service;
 
 import com.example.internship_portal.model.users.*;
-import com.example.internship_portal.repository.UserRepository;
+import com.example.internship_portal.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
