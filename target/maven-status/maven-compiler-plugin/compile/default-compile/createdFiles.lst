@@ -6,10 +6,12 @@ com\example\internship_portal\filter\JwtAuthFilter.class
 com\example\internship_portal\dto\RoleDto$Response.class
 com\example\internship_portal\entity\Internship.class
 com\example\internship_portal\service\ApplicationServiceImpl.class
+com\example\internship_portal\config\DataInitializer.class
 com\example\internship_portal\dto\UserDto$Response.class
 com\example\internship_portal\exception\auth\AuthorizationHeaderNotFoundException.class
 com\example\internship_portal\entity\users\Mentor.class
 com\example\internship_portal\repository\InternshipRepository.class
+com\example\internship_portal\service\InternshipService.class
 com\example\internship_portal\dto\applicationDto$Response.class
 com\example\internship_portal\repository\SubmisionRepository.class
 com\example\internship_portal\repository\UserRepository.class
@@ -35,6 +37,7 @@ com\example\internship_portal\entity\users\Role$RoleName.class
 com\example\internship_portal\dto\UserDto$UpdateRequest.class
 com\example\internship_portal\exception\ErrorResponse.class
 com\example\internship_portal\dto\TaskDto$Response.class
+com\example\internship_portal\dto\InternshipDto$StatusUpdateRequest.class
 com\example\internship_portal\exception\auth\TokenExpiredException.class
 com\example\internship_portal\dto\SubmisionDto$Response.class
 com\example\internship_portal\dto\applicationDto$UpdateRequest.class
@@ -54,6 +57,7 @@ com\example\internship_portal\entity\users\User.class
 com\example\internship_portal\dto\SubmisionDto$FeedbackRequest.class
 com\example\internship_portal\dto\TaskDto.class
 com\example\internship_portal\service\AuthenticationService.class
+com\example\internship_portal\controller\InternshipController.class
 com\example\internship_portal\dto\applicationDto.class
 com\example\internship_portal\entity\Task.class
 com\example\internship_portal\exception\BadRequestException.class

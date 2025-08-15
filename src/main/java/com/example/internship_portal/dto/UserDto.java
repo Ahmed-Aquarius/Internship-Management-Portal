@@ -3,7 +3,7 @@ package com.example.internship_portal.dto;
 import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.Set;
-import com.example.internship_portal.model.users.Role;
+import com.example.internship_portal.entity.users.Role;
 
 public class UserDto {
     public static record CreateRequest(

@@ -3,6 +3,7 @@ D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\config\SecurityConfig.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\controller\ApplicationController.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\controller\AuthController.java
+D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\controller\InternshipController.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\controller\SubmissionController.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\controller\TaskController.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\controller\UserController.java
@@ -42,6 +43,7 @@ D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\service\ApplicationService.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\service\ApplicationServiceImpl.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\service\AuthenticationService.java
+D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\service\InternshipService.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\service\SubmissionService.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\service\SubmissionServiceImpl.java
 D:\Work\Ejada Internship\Tasks\spring boot project\Internship-Management-Portal\src\main\java\com\example\internship_portal\service\TaskService.java

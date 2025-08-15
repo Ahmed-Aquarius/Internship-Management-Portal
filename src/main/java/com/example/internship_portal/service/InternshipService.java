@@ -1,11 +1,11 @@
 package com.example.internship_portal.service;
 
 import com.example.internship_portal.dto.InternshipDto;
-import com.example.internship_portal.model.Internship;
-import com.example.internship_portal.model.users.User;
-import com.example.internship_portal.model.users.Role;
-import com.example.internship_portal.repo.InternshipRepository;
-import com.example.internship_portal.repo.UserRepository;
+import com.example.internship_portal.entity.Internship;
+import com.example.internship_portal.entity.users.User;
+import com.example.internship_portal.entity.users.Role;
+import com.example.internship_portal.repository.InternshipRepository;
+import com.example.internship_portal.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

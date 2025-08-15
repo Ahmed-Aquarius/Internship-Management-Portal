@@ -1,11 +1,11 @@
 package com.example.internship_portal.config;
 
-import com.example.internship_portal.model.users.User;
-import com.example.internship_portal.model.users.Role;
-import com.example.internship_portal.model.users.Admin;
-import com.example.internship_portal.model.users.Mentor;
-import com.example.internship_portal.model.users.Intern;
-import com.example.internship_portal.repo.UserRepository;
+import com.example.internship_portal.entity.users.User;
+import com.example.internship_portal.entity.users.Role;
+import com.example.internship_portal.entity.users.Admin;
+import com.example.internship_portal.entity.users.Mentor;
+import com.example.internship_portal.entity.users.Intern;
+import com.example.internship_portal.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;

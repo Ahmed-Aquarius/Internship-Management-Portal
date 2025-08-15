@@ -7,6 +7,7 @@ import com.example.internship_portal.exception.ResourceNotFoundException;
 import com.example.internship_portal.entity.*;
 import com.example.internship_portal.repository.ApplicationRepository;
 import com.example.internship_portal.repository.InternshipRepository;
+import com.example.internship_portal.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
