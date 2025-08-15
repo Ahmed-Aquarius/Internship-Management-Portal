@@ -2,7 +2,8 @@ package com.example.internship_portal.dto;
 
 import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
+import com.example.internship_portal.model.users.Role;
 
 public class UserDto {
     public static record CreateRequest(
@@ -10,14 +11,14 @@ public class UserDto {
             @NotBlank String password,
             @NotBlank @Email String email,
             @NotBlank @Size(max = 100) String fullName,
-            List<String> roles
+            Set<Role> roles
     ) { }
 
     public static record UpdateRequest(
             String email,
             String fullName,
             Boolean isActive,
-            List<String> roles
+            Set<Role> roles
     ) { }
 
     public static record Response(
@@ -26,7 +27,7 @@ public class UserDto {
             String email,
             String fullName,
             Boolean isActive,
-            List<String> roles,
+            Set<Role> roles,
             LocalDateTime createdAt,
             LocalDateTime updatedAt
 ){}

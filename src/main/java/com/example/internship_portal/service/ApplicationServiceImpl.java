@@ -5,7 +5,6 @@ import com.example.internship_portal.entity.users.User;
 import com.example.internship_portal.exception.BadRequestException;
 import com.example.internship_portal.exception.ResourceNotFoundException;
 import com.example.internship_portal.entity.*;
-import com.example.internship_portal.repository.*;
 import com.example.internship_portal.repository.ApplicationRepository;
 import com.example.internship_portal.repository.InternshipRepository;
 import lombok.RequiredArgsConstructor;
