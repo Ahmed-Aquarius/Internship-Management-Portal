@@ -1,5 +1,6 @@
-package com.example.internship_portal.model;
+package com.example.internship_portal.entity;
 
+import com.example.internship_portal.entity.users.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -64,5 +65,9 @@ public class Submission {
         if (submittedAt == null) {
             submittedAt = LocalDateTime.now();
         }
+    }
+
+    public void setTask(@NotNull(message = "Task is required") Task task) {
+        this.task = task;
     }
 }

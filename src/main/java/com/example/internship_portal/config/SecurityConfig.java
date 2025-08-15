@@ -1,25 +1,87 @@
 package com.example.internship_portal.config;
 
+import com.example.internship_portal.filter.JwtAuthFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    
+
+    private final JwtAuthFilter jwtAuthFilter;
+
+    @Autowired
+    public SecurityConfig(@Lazy JwtAuthFilter jwtAuthFilter) {
+        this.jwtAuthFilter = jwtAuthFilter;
+    }
+
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-    
+
+    @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+
+        JdbcUserDetailsManager UserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        UserDetailsManager.setUsersByUsernameQuery("select username, password, is_active from users where username=?");
+
+        UserDetailsManager.setAuthoritiesByUsernameQuery(
+                "SELECT u.username, r.role " +
+                        "FROM roles r " +
+                        "JOIN users u ON r.user_id = u.id " +
+                        "WHERE u.username=?"
+        );
+
+        return UserDetailsManager;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //to be implemented
-        return null;
+
+        http.authorizeHttpRequests(configurer ->
+                configurer
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/users",
+                                "/api/users/admins",
+                                "/api/users/mentors",
+                                "/api/users/interns")
+                                .authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/users/*").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/users").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/api/users/*").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/users/*").hasAnyAuthority("MENTOR", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/*").hasAuthority("ADMIN")
+        );
+
+        http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        http.httpBasic(Customizer.withDefaults());
+
+        http.csrf(csrf -> csrf.disable());
+
+        return http.build();
     }
 }
