@@ -1,10 +1,13 @@
 package com.example.internship_portal.service;
 
 import com.example.internship_portal.dto.applicationDto;
+import com.example.internship_portal.entity.users.User;
 import com.example.internship_portal.exception.BadRequestException;
 import com.example.internship_portal.exception.ResourceNotFoundException;
-import com.example.internship_portal.model.*;
-import com.example.internship_portal.repo.*;
+import com.example.internship_portal.entity.*;
+import com.example.internship_portal.repository.*;
+import com.example.internship_portal.repository.ApplicationRepository;
+import com.example.internship_portal.repository.InternshipRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

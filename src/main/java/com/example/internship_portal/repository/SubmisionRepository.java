@@ -1,6 +1,6 @@
-package com.example.internship_portal.repo;
+package com.example.internship_portal.repository;
 
-import com.example.internship_portal.model.Submission;
+import com.example.internship_portal.entity.Submission;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 

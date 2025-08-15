@@ -2,9 +2,9 @@ package com.example.internship_portal.service;
 
 import com.example.internship_portal.dto.TaskDto;
 import com.example.internship_portal.exception.ResourceNotFoundException;
-import com.example.internship_portal.model.Task;
-import com.example.internship_portal.repo.InternshipRepository;
-import com.example.internship_portal.repo.TaskRepository;
+import com.example.internship_portal.entity.Task;
+import com.example.internship_portal.repository.InternshipRepository;
+import com.example.internship_portal.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
