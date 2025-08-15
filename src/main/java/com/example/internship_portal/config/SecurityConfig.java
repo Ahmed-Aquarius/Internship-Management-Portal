@@ -72,6 +72,15 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/api/users/*").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/users/*").hasAnyAuthority("MENTOR", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/*").hasAuthority("ADMIN")
+
+                        //only admins can create/manage internships
+                        .requestMatchers(HttpMethod.POST, "/api/v1/internships").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/internships/*").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/internships/*/status").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/internships/*").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/internships/**").authenticated()
+
+                        .anyRequest().authenticated()
         );
 
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
