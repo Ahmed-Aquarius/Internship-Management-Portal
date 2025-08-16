@@ -80,6 +80,23 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/internships/*").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/internships/**").authenticated()
 
+
+                        //tasks
+                        .requestMatchers(HttpMethod.GET,  "/api/v1/tasks/").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/tasks/").hasAnyAuthority("MENTOR","ADMIN")
+                        .requestMatchers(HttpMethod.PUT,  "/api/v1/tasks/").hasAnyAuthority("MENTOR","ADMIN")
+                        .requestMatchers(HttpMethod.PATCH,"/api/v1/tasks/").hasAnyAuthority("MENTOR","ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/v1/tasks/").hasAnyAuthority("MENTOR","ADMIN")
+
+                        // Submissions
+                        .requestMatchers(HttpMethod.POST, "/api/v1/submissions/").hasAuthority("INTERN")
+                        .requestMatchers(HttpMethod.GET,  "/api/v1/submissions/").authenticated()
+                        .requestMatchers(HttpMethod.PATCH,"/api/v1/submissions/*/feedback").hasAnyAuthority("MENTOR","ADMIN")
+
+                        // Applications
+                        .requestMatchers(HttpMethod.POST, "/api/v1/applications/").hasAuthority("INTERN")
+                        .requestMatchers(HttpMethod.GET,  "/api/v1/applications/").authenticated()
+                        .requestMatchers(HttpMethod.PATCH,"/api/v1/applications/*/status").hasAnyAuthority("MENTOR","ADMIN")
                         .anyRequest().authenticated()
         );
 
