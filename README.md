@@ -183,18 +183,6 @@ Each service exposes REST APIs. Key endpoints include:
 - `POST /internships` - Create internship
 - `GET /internships/{id}` - Get internship by ID
 
-## 🐳 Docker Support
-
-Each service includes Dockerfile for containerization:
-
-```bash
-# Build individual service
-docker build -t internship-service ./internship_service
-
-# Run service
-docker run -p 8082:8082 internship-service
-```
-
 
 ## 📁 Project Structure
 
